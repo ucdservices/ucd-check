@@ -1,0 +1,40 @@
+{% extends "layouts/main.njk" %}
+
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/select/macro.njk" import govukSelect %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% block pageTitle %}
+  Where do you live? – Apply for a permit – GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({ text: "Back", href: "/start" }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <form method="post" novalidate>
+        {{ govukSelect({
+          id: "country",
+          name: "country",
+          label: {
+            text: "Where do you live?",
+            classes: "govuk-label--l",
+            isPageHeading: true
+          },
+          items: [
+            { value: "england", text: "England", selected: true },
+            { value: "scotland", text: "Scotland" },
+            { value: "wales", text: "Wales" }
+          ]
+        }) }}
+        {{ govukButton({
+          text: "Continue",
+          attributes: { disabled: "disabled" }
+        }) }}
+      </form>
+    </div>
+  </div>
+{% endblock %}

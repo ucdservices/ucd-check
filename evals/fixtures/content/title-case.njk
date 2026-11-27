@@ -1,0 +1,22 @@
+{% extends "layouts/main.njk" %}
+
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% block pageTitle %}
+  What is your National Insurance number? – Apply for a permit – GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({ text: "Back", href: "/start" }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">What Is Your National Insurance Number?</h1>
+      <p class="govuk-body">Please enter your number. You can <a class="govuk-link" href="/help">click here</a> for help.</p>
+      {{ govukButton({ text: "Click Here" }) }}
+    </div>
+  </div>
+{% endblock %}

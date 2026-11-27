@@ -1,0 +1,40 @@
+{% extends "layouts/main.njk" %}
+
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/input/macro.njk" import govukInput %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% block pageTitle %}
+  Your details – Apply for a permit – GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({ text: "Back", href: "/start" }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">Your details</h1>
+      <form method="post" novalidate>
+        {{ govukInput({
+          label: { text: "Full name" },
+          id: "name",
+          name: "name",
+          autocomplete: "name",
+          spellcheck: false,
+          attributes: { placeholder: "Alex Smith" }
+        }) }}
+        {{ govukInput({
+          label: { text: "Email address" },
+          id: "email",
+          name: "email",
+          type: "email",
+          autocomplete: "email",
+          spellcheck: false
+        }) }}
+        {{ govukButton({ text: "Continue" }) }}
+      </form>
+    </div>
+  </div>
+{% endblock %}

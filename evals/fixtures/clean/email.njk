@@ -1,0 +1,49 @@
+{% extends "layouts/main.njk" %}
+
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+{% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
+{% from "govuk/components/input/macro.njk" import govukInput %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% set question = "What is your email address?" %}
+
+{% block pageTitle %}
+  {{ "Error: " if errorList | length }}{{ question }} – Apply for a permit – GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({ text: "Back", href: "/start" }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      {% if errorList | length %}
+        {{ govukErrorSummary({
+          titleText: "There is a problem",
+          errorList: errorList
+        }) }}
+      {% endif %}
+      <form method="post" novalidate>
+        {{ govukInput({
+          label: {
+            text: question,
+            classes: "govuk-label--l",
+            isPageHeading: true
+          },
+          hint: {
+            text: "We will only use this to send you updates about your application"
+          },
+          id: "email",
+          name: "email",
+          type: "email",
+          autocomplete: "email",
+          spellcheck: false,
+          value: data.email,
+          errorMessage: errorMessage
+        }) }}
+        {{ govukButton({ text: "Continue" }) }}
+      </form>
+    </div>
+  </div>
+{% endblock %}
